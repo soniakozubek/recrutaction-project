@@ -3,17 +3,16 @@ let pageObject = require('./page-object.js');
 describe('Recruitment application tests', () => {
 
   let functions = new pageObject();
-  // let EC = protractor.ExpectedConditions;
 
   beforeAll(() => {
     functions.login();
   });
+  
   afterEach(() => {
     functions.openMainPage();
   });
 
   it('+Should be possible to navigate between folders.', () => {
-    // browser.wait(EC.visibilityOf($('#abc')), 5000);
     functions.navigateTo('folderA');
     functions.navigateTo('folderB');
     functions.navigateTo('folderC');
@@ -29,16 +28,13 @@ describe('Recruitment application tests', () => {
   it('+Should be files sorted by name, descending.', () => {
 
     functions.navigateTo('Data Folder')
-
-    functions.navigateTo('Data1')
-    
+    functions.navigateTo('Data1') 
     functions.changeSortingOrder('DESC')
     functions.checkIfFilesAreSortedByNameDesc()
     functions.changeSortingOrder('ASC')
   });
 
   it('+Should be possible to turn gallery view for folder with images.', () => {
-
     functions.navigateTo('Data Folder');
     functions.navigateTo('Data1');
     functions.turnGalleryView();
@@ -53,13 +49,13 @@ describe('Recruitment application tests', () => {
     functions.navigateTo('Data Folder');
     functions.navigateTo('Data2');
     functions.turnGalleryView();
+    
     expect(functions.checkIfFilesAreDisplayed()).toBe(false)
     expect(functions.getListViewButton().isDisplayed()).toBeTruthy()
     expect($('.gallery-empty').isDisplayed()).toBeTruthy()
   });
 
   it('-Application should display message after attempt of opening folder which not exist.', () => {
-
     functions.openNotExistingFolder()
     functions.getURLError().then(text => {
       expect(text[0].trim()).toBe('This folder is no longer available\nThis folder is no longer available. Contact the person who sent you this link to get a new link to the folder.');
