@@ -58,7 +58,7 @@ describe('Recruitment application tests', () => {
     expect($('.gallery-empty').isDisplayed()).toBeTruthy()
   });
 
-  fit('-Application should not crash after attempt of opening folder which not exist.', () => {
+  it('-Application should not crash after attempt of opening folder which not exist.', () => {
 
     functions.openNotExistingFolder()
     functions.getURLError().then(text => {
