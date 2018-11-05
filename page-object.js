@@ -15,7 +15,10 @@ let pageObject = function () {
         browser.get('https://qarecruitment.egnyte.com/fl/WFFhkIrOdZ#folder-link/Sonia%20Kozubek');
         browser.waitForAngular();
     };
-
+    this.openNotExistingFolder = () => {
+        browser.get('https://qarecruitment.egnyte.com/fl/WFFhkIrOdZ#folder-link/Sonia%20Kozubekk/folderA/folderZ');
+        browser.waitForAngular();
+    };
     this.enterPassword = () => {
         this.passwordField.sendKeys(this.password)
         this.continueButton.click()
@@ -31,7 +34,7 @@ let pageObject = function () {
         browser.wait(protractor.ExpectedConditions.presenceOf(element), 5000)
             element.click()
             browser.sleep(1000)
-         
+            browser.waitForAngular();
     }
 
     this.getCurrentFolderName = () => {
@@ -93,5 +96,10 @@ let pageObject = function () {
         return $$('button[data-mode="list"]')
     }
 
+    this.getURLError = () => {
+        let element = $$('.span9.description');
+        browser.wait(protractor.ExpectedConditions.presenceOf(element), 10000)
+        return element.getText()  
+    }
 };
 module.exports = pageObject;
