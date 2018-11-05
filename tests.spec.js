@@ -34,6 +34,7 @@ describe('Recruitment application tests', () => {
     
     functions.changeSortingOrder('DESC')
     functions.checkIfFilesAreSortedByNameDesc()
+    functions.changeSortingOrder('ASC')
   });
 
   it('+Should be possible to turn gallery view for folder with images.', () => {
@@ -56,4 +57,13 @@ describe('Recruitment application tests', () => {
     expect(functions.getListViewButton().isDisplayed()).toBeTruthy()
     expect($('.gallery-empty').isDisplayed()).toBeTruthy()
   });
+
+  fit('-Application should not crash after attempt of opening folder which not exist.', () => {
+
+    functions.openNotExistingFolder()
+    functions.getURLError().then(text => {
+      expect(text[0].trim()).toBe('This folder is no longer available\nThis folder is no longer available. Contact the person who sent you this link to get a new link to the folder.');
+    })
+  });
+
 });
