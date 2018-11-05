@@ -19,19 +19,19 @@ describe('Recruitment application tests', () => {
     
     expect(browser.getCurrentUrl()).toBe('https://qarecruitment.egnyte.com/fl/WFFhkIrOdZ#folder-link/Sonia%20Kozubek/folderA/folderB/folderC')
     functions.getCurrentFolderName().then((name) => {
-      expect(name).toBe('folderC')
+      expect(name).toBe('folderC');
     })
-    expect(functions.checkIfFilesAreDisplayed()).toBe(true)
-    expect(functions.countFilesInFolder()).toBe(1)
+    expect(functions.checkIfFilesAreDisplayed()).toBe(true);
+    expect(functions.countFilesInFolder()).toBe(1);
   });
 
   it('+Should be files sorted by name, descending.', () => {
 
-    functions.navigateTo('Data Folder')
-    functions.navigateTo('Data1') 
-    functions.changeSortingOrder('DESC')
-    functions.checkIfFilesAreSortedByNameDesc()
-    functions.changeSortingOrder('ASC')
+    functions.navigateTo('Data Folder');
+    functions.navigateTo('Data1');
+    functions.changeSortingOrder('DESC');
+    functions.checkIfFilesAreSortedByNameDesc();
+    functions.changeSortingOrder('ASC');
   });
 
   it('+Should be possible to turn gallery view for folder with images.', () => {
@@ -39,10 +39,10 @@ describe('Recruitment application tests', () => {
     functions.navigateTo('Data1');
     functions.turnGalleryView();
 
-    expect(functions.checkIfFilesAreDisplayed()).toBe(false)
-    expect(functions.checkIfImagesInGalleryViewAreDisplayed()).toBe(true)
-    expect(functions.countImagesInGalleryView()).toBe(3)
-    expect(functions.getListViewButton().isDisplayed()).toBeTruthy()
+    expect(functions.checkIfFilesAreDisplayed()).toBe(false);
+    expect(functions.checkIfImagesInGalleryViewAreDisplayed()).toBe(true);
+    expect(functions.countImagesInGalleryView()).toBe(3);
+    expect(functions.getListViewButton().isDisplayed()).toBeTruthy();
   });
 
   it('-Application should not crash after turning gallery view for folder without images.', () => {
@@ -50,13 +50,13 @@ describe('Recruitment application tests', () => {
     functions.navigateTo('Data2');
     functions.turnGalleryView();
     
-    expect(functions.checkIfFilesAreDisplayed()).toBe(false)
-    expect(functions.getListViewButton().isDisplayed()).toBeTruthy()
-    expect($('.gallery-empty').isDisplayed()).toBeTruthy()
+    expect(functions.checkIfFilesAreDisplayed()).toBe(false);
+    expect(functions.getListViewButton().isDisplayed()).toBeTruthy();
+    expect($('.gallery-empty').isDisplayed()).toBeTruthy();
   });
 
   it('-Application should display message after attempt of opening folder which not exist.', () => {
-    functions.openNotExistingFolder()
+    functions.openNotExistingFolder();
     functions.getURLError().then(text => {
       expect(text[0].trim()).toBe('This folder is no longer available\nThis folder is no longer available. Contact the person who sent you this link to get a new link to the folder.');
     })
